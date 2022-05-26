@@ -8,11 +8,13 @@
     <h1>{{ post.title }}</h1>
     <small>By: 
         {{ post.author.first_name }} 
-        {{ post.author.last_name }} <br/>
-        @ {{ post.post_date }} <br/>
+        {{ post.author.last_name }} @ {{ post.post_date }} <br/>
+        <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a><br/>
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
-                <a href="{% url 'update_post'  post.pk %}">(Edit)</a> | 
+                <a href="{% url 'update_post'  post.pk %}">(Edit)
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </a> | 
                 <a href="{% url 'delete_post'  post.pk %}">(delete)</a>
             {% endif %}
         {% endif %}

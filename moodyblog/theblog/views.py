@@ -60,7 +60,6 @@ class AddCommentView(CreateView):
     success_url = reverse_lazy('home')
 
 
-
 class AddCategoryView(CreateView):
     model = Category
     #form_class = PostForm

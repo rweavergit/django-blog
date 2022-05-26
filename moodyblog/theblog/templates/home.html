@@ -3,28 +3,28 @@
 {% block content %}
 
 
-<h1>Post</h1>
 
-<ul>
+
+
 {% for post in object_list %}
-    <li><a href="{% url 'article-detail'  post.pk %}">{{ post.title }}</a> 
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <h2>{{ post.title }}</h2>
+        <small class="text-muted">By: {{ post.author.first_name }} @ {{ post.post_date }}</small>  
         
-        - <a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a>
-        - {{ post.author.first_name }} {{ post.author.last_name }} · {{ post.post_date }} 
-        <small>
-            {% if user.is_authenticated %}
-                {% if user.id == post.author.id %}
-                    <a href="{% url 'update_post'  post.pk %}">(Edit)</a> | 
-                    <a href="{% url 'delete_post'  post.pk %}">(delete)</a>
-                {% endif %}
-            {% endif %}
-        </small><br/>
-    {{ post.snippet }}    
-    </li>
+        <br/><br/>
+        {{ post.body|safe }}<br/><br/>
+
+        <a href="{% url 'article-detail'  post.pk %}" class="btn btn-outline-secondary btn-sm">Read more</a>
+        {% if user.id == post.author.id %}
+            <a href="{% url 'update_post'  post.pk %}" class="btn btn-outline-warning btn-sm">Edit Post</a> 
+            <a href="{% url 'delete_post'  post.pk %}" class="btn btn-outline-danger btn-sm">Delete Post</a>
+        {% endif %}
+
+    </div>
 
 
 {% endfor %}
-</ul>
+
 
 
 
