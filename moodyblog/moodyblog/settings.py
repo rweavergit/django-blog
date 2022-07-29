@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'theblog',
     'members',
     'ckeditor',
-
+    'django_bootstrap_icons',
 ]
 
 MIDDLEWARE = [
