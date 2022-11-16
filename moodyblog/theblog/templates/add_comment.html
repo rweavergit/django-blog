@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% block title %} Create New Comment {% endblock %}
+
+{% block title %} Add Comment {% endblock %}
 
 
 {% block content %}
+{% if user.is_authenticated %}
 
-
-    <h1>Add Post</h1>
+    <h1>Add Comment</h1>
     <br/><br/>
 
     <div class="form_group">
@@ -15,6 +16,14 @@
             <button class="btn btn-primary">Add Comment</button>
         </form>
     </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("authorid").value = name;
+
+    </script>
+{% else %}
+    <h1>Please Login</h1>
+{% endif %}
 
 {% endblock %}
 
