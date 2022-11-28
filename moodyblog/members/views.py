@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.auth.models import User
 from dataclasses import fields
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
@@ -13,7 +15,7 @@ class EditProfilePageView(generic.UpdateView):
     template_name = 'registration/edit_profile_page.html'
     success_url = reverse_lazy('home')
     fields = ['bio', 'profile_pic', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url']
-
+    
 class CreateProfilePageView(generic.CreateView):
     model = Profile
     form_class = ProfilePageForm
@@ -38,9 +40,13 @@ class ShowProfilePageView(DetailView):
         context["page_user"] = page_user
         return context
 
+
+
+
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
     # form_class = PasswordChangeForm
+    # messages.success(request, "Password Updated Sucessfully")
     success_url = reverse_lazy('password_success')
     # success_url = reverse_lazy('home')
 
