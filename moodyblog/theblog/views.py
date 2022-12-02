@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from .models import Category, Post, Comment, Profile
 from .forms import PostForm, EditForm, CommentForm
 from django.contrib.auth.models import User
+from django.contrib import messages
+
 
 # def home(request):
 #     return render(request, 'home.html', {})
