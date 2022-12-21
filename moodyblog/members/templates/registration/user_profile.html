@@ -3,6 +3,7 @@
 {% block content %}
 
 <img src="{% static 'moodyblog/images/default_profile_pic.jpeg' %}" class="rounded mx-auto d-block" alt="profile pic">
+<br/>
 <div class="row justify-content-between">
   <div class="col-4">
     <h1>{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h1>
@@ -12,7 +13,20 @@
     <a href="{% url 'edit_profile_page' page_user.id %}" class="btn btn-outline-secondary btn-md">Edit Profile</a>
   </div>
 </div>
-
+<ul class="nav nav-tabs nav-fill">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#">Posts</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Link</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Uploads</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Likes</a>
+  </li>
+</ul>
 
 
 

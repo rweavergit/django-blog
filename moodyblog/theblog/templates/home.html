@@ -19,6 +19,7 @@
 
 
 {% for post in object_list %}
+    
     <div class="shadow p-3 mb-5 bg-body rounded">
         <h2>{{ post.title }}</h2>
         <small class="text-muted">By: {{ post.author.username }} @ {{ post.post_date }}</small>  
@@ -26,7 +27,8 @@
         <br/><br/>
         {{ post.body|safe }}<br/><br/>
 
-        <a href="{% url 'article-detail'  post.pk %}" class="btn btn-outline-secondary btn-sm">Read more</a>
+        <a href="{% url 'article-detail' author=post.author.username pk=post.id %}" class="btn btn-outline-secondary btn-sm">Read more</a>
+        {% comment %} <a href="{% url 'article-detail'  post.pk %}" class="btn btn-outline-secondary btn-sm">Read more</a> {% endcomment %}
         {% if user.id == post.author.id %}
             <a href="{% url 'update_post'  post.pk %}" class="btn btn-outline-warning btn-sm">Edit Post</a> 
             <a href="{% url 'delete_post'  post.pk %}" class="btn btn-outline-danger btn-sm">Delete Post</a>

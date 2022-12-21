@@ -46,6 +46,11 @@ class ArticleDetailView(DetailView):
         context['liked'] = liked
         return context
 
+    def get_queryset(self, *args, **kwargs):
+        return super().get_queryset(*args, **kwargs).filter(
+            author__username=self.kwargs["author"]
+        )
+
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
@@ -110,4 +115,4 @@ def LikeView(request, pk):
         liked = True
 
     return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
-    
+

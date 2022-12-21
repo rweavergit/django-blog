@@ -6,6 +6,7 @@ from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, PasswordChangingForm, ProfilePageForm
 from theblog.models import Profile
@@ -30,15 +31,21 @@ class CreateProfilePageView(generic.CreateView):
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
+    
 
     def get_context_data(self, *args, **kwargs):
         #users = Profile.objects.all()
         context = super(ShowProfilePageView, self).get_context_data(*args, **kwargs)
-
+       
         page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
 
         context["page_user"] = page_user
         return context
+
+def account_home(request):
+    u = User.objects.get(username=request.user.username)
+    return render(request, "registration/show_profile_page.html", {})
+
 
 
 
